@@ -52,17 +52,38 @@ int BFS(int max_row, int max_col,
 	return (element[cur_row][cur_col] - 1);
 }
 
+bool last_check(int max_row, int max_col,
+	vector<vector<int>> element)
+{
+	for (int i = 0; i < max_row; i++) {
+		for (int j = 0; j < max_col; j++) {
+			if (element[i][j] == 0) {
+				return false;
+			}
+		}
+	}
+
+	return true;
+}
+
 int main() 
 {
 	FILE *fp;
 	int data;
 	int max_row = 0, max_col = 0;
 	int cur_row = 0, cur_col = 0;
+	int answer = 0;
 	vector<vector<int>> element, visited;
 
 	fp = fopen("test.txt", "r");
 	fscanf(fp, "%1d", &data);
 	max_col = data;
+
+	if (max_col < 2 && max_col > 1000)
+	{
+		return 0;
+	}
+
 	fscanf(fp, "%1d", &data);
 	max_row = data;
 
@@ -88,7 +109,13 @@ int main()
 		cout << endl;
 	}
 
-	cout << BFS(max_row, max_col, element, visited) << endl;
+	answer = BFS(max_row, max_col, element, visited);
+	if (last_check(max_row, max_col, element) != false) {
+		cout << answer << endl;
+	}
+	else {
+		cout << "-1" << endl;
+	}
 
 	return 0;
 }
