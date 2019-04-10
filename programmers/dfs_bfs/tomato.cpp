@@ -69,7 +69,7 @@ int main()
 	element.assign(max_row, vector<int>(max_col, 0));
 	visited.assign(max_row, vector<int>(max_col, 0));
 
-	while (fscanf(fp, "%1d", &data) != EOF) {
+	while (fscanf(fp, "%2d", &data) != EOF) {
 		element[cur_row][cur_col] = data;
 		cur_col++;
 		if (cur_col == max_col) {
